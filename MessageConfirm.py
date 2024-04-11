@@ -63,7 +63,7 @@ def MessageSend():
         else:
             text = html_in 
         part = text.split('''<form accept-charset="UTF-8" action="/internal_messages/create_for_thread" class="no-border no-bg"''', 1)
-        title = "###Od: " + header
+        title = "### Od: " + header
         return [title, part[0]]
 
     # Extract the number of pages of internal messages
