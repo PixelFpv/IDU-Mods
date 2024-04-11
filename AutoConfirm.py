@@ -11,4 +11,4 @@ load_dotenv()
 user = os.getenv('USER_NAME')
 passw = os.getenv('PASSWORD') 
    
-asyncio.run(send_message())
+asyncio.run(send_message()) 

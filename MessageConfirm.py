@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/bin/python3 
 import discord
 import asyncio
 import requests
