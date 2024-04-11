@@ -149,8 +149,8 @@ def get_empty_rooms():
                 free_3.append(count)
 
 
-    website = open(r'index.html',"r+")
-    # website = open(r'index.html',"r+")
+    website = open(r'../IDUwww/index.html',"r+")
+
     website.truncate(0)
     website.write('''
     <!DOCTYPE html>
