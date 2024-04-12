@@ -8,3 +8,4 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
 
 ## To-do:
  - [ ] send mark and revievs
+ - [ ] send subject announcements
