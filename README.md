@@ -7,4 +7,4 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
  - OgloszenieConfirm.py <-- sends unread informations
 
 ## To-do:
- - [ ] send marsk and revievs
+ - [ ] send mark and revievs
