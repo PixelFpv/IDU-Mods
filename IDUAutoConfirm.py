@@ -37,7 +37,7 @@ def IDU():
 
     html = session.get(new_url)
     html_string = html.content.decode('utf-8')
-
+ 
     def scrape(html_in):
         text = html_in.find('''double-column''')
         
@@ -84,7 +84,7 @@ def IDU():
 
 
 TOKEN = os.getenv('TOKEN')
-CHANNEL_ID = int(os.getenv('PUBLIC_AKTUALNOSCI_CHANEL_ID'))
+CHANNEL_ID = int(os.getenv('AKTUALNOSCI_CHANEL_ID'))
 MAX_MESSAGE_LENGTH = 2000
 
 async def send_message():

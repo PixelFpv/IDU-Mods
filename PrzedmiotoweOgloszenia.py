@@ -32,8 +32,18 @@ def IDU():
             'remember_me': 1}
 
     rp = session.post(url,data=values)
+    html = session.get("https://s35.idu.edu.pl")
+    html_string = html.content.decode('utf-8')
     # new_url = rp.url
-    html = session.get("https://s35.idu.edu.pl/informations")
+    pattern = r'<a href="/students/(\d+)'
+    match = re.search(pattern, html_string)
+
+    if match:
+        student_id = match.group(1)
+    else:
+        student_id = 1
+
+    html = session.get("https://s35.idu.edu.pl/students/" + student_id + "/subject_announcements")
     html_string = html.content.decode('utf-8')
 
     pattern = r'>(\d+)</a> <a class="next_page"'
@@ -42,46 +52,62 @@ def IDU():
 
 
     def scrape(html_in):
-        text = html_in.find('''double-column''')
+        text = html_in.find('''<div class="double-column">''')
         
         if text != -1:
             text = html_in[text:]
         else:
             text = html_in 
 
-        part = text.split('''<h3>Komentarze</h3>''', 1)
+        part = text.split('''data-method="post" rel="nofollow''', 1)
         return part[0]
 
 
     number_of_pages = int(match.group(1))
     # print(number_of_pages)
-    for i in range(number_of_pages + 1, 0, -1):
-        information_url = "https://s35.idu.edu.pl/informations?page=" + str(i)
+    for i in range(number_of_pages, 0, -1):
+        information_url = "https://s35.idu.edu.pl/students/" + student_id + "/subject_announcements?page=" + str(i)
         # print(information_url)
         info_get = session.get(information_url)
         # print(info_get)
         info_string = info_get.content.decode('utf-8')
-        info_split = info_string.split("profile-event news priority")
+        info_split = info_string.split("profile-event announcement new")
         for i in range(len(info_split), 1, -1):
             new_page = info_split[i-1]
-            pattern = r'<a\s+href="(/informations/\d+)">'            
+            pattern = r'<a\s+href="(/subject_announcements/\d+/confirm)">'                
             match = re.search(pattern, new_page)
             link = match.group(1)
-
+            # print(link)
             html = session.get("https://s35.idu.edu.pl" + link)
             html_string = html.content.decode('utf-8')
- 
+
             h = scrape(html_string)
             h = "\n".join(h.splitlines()[2:-4])
-            print(h)
+            
             h = markdownify.markdownify(h, heading_style="ATX") 
+            # print(h)
+
+            
+            # r = session.get(new_url, allow_redirects=True)
+            # txt = r.content.decode('utf-8')
+            m = list(re.finditer('''<input name="authenticity_token" type="hidden" value="''', html_string))[-1]
+            m2 = re.search('''"''', html_string[m.end()+1:])
+            auth_token = html_string[m.end(): m.end()+m2.end()]
+
+                
+            data = {
+                '_method': 'post',
+                'authenticity_token': auth_token
+            }
+            response = session.post(html.url, data=data)
+
+            
+            print (h)
             asyncio.run(send_message(h))
 
 
-
-
 TOKEN = os.getenv('TOKEN')
-CHANNEL_ID = int(os.getenv('OGLOSZENIE_CHANEL_ID'))
+CHANNEL_ID = int(os.getenv('PRZEDMIOTOWE_CHANEL_ID'))
 MAX_MESSAGE_LENGTH = 2000
 
 async def send_message(content):

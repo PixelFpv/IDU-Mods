@@ -105,7 +105,7 @@ def MessageSend():
 
 # Retrieve Discord token and channel ID from environment variables
 TOKEN = os.getenv('TOKEN')
-CHANNEL_ID = int(os.getenv('PRIVATE_CHANEL_ID'))
+CHANNEL_ID = int(os.getenv('MESSAGE_CHANEL_ID'))
 MAX_MESSAGE_LENGTH = 2000
 
 # Asynchronously send message to Discord channel
