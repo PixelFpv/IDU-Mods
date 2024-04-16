@@ -1,9 +1,9 @@
 #!/bin/python3 
 
-import discord
+# import discord
 import asyncio
 import requests
-import markdownify
+# import markdownify
 import re
 
 import os
@@ -36,6 +36,8 @@ def IDU():
     html = session.get("https://s35.idu.edu.pl/informations")
     html_string = html.content.decode('utf-8')
 
+    # print (html_string)
+
     pattern = r'>(\d+)</a> <a class="next_page"'
 
     match = re.search(pattern, html_string)
@@ -55,13 +57,22 @@ def IDU():
 
     number_of_pages = int(match.group(1))
     # print(number_of_pages)
-    for i in range(number_of_pages + 1, 0, -1):
+    for i in range(1, number_of_pages + 1, 1):
+        # print (i)
         information_url = "https://s35.idu.edu.pl/informations?page=" + str(i)
         # print(information_url)
         info_get = session.get(information_url)
         # print(info_get)
         info_string = info_get.content.decode('utf-8')
-        info_split = info_string.split("profile-event news priority")
+        # info_split = info_string.split("profile-event news priority")
+        # print(info_string.split())
+        if info_string.find("profile-event news priority") == -1:
+            info_split = info_string.split("profile-event news sticky priority")
+
+        if info_string.find("rofile-event news sticky priority") == -1:
+            info_split = info_string.split("profile-event news priority")
+
+            
         for i in range(len(info_split), 1, -1):
             new_page = info_split[i-1]
             pattern = r'<a\s+href="(/informations/\d+)">'            
@@ -74,8 +85,8 @@ def IDU():
             h = scrape(html_string)
             h = "\n".join(h.splitlines()[2:-4])
             print(h)
-            h = markdownify.markdownify(h, heading_style="ATX") 
-            asyncio.run(send_message(h))
+            # h = markdownify.markdownify(h, heading_style="ATX") 
+            # asyncio.run(send_message(h))
 
 
 
@@ -84,37 +95,37 @@ TOKEN = os.getenv('TOKEN')
 CHANNEL_ID = int(os.getenv('OGLOSZENIE_CHANEL_ID'))
 MAX_MESSAGE_LENGTH = 2000
 
-async def send_message(content):
-    # Intents needed for certain events (like reading message content)
-    intents = discord.Intents.default()
-    intents.messages = True
+# async def send_message(content):
+#     # Intents needed for certain events (like reading message content)
+#     intents = discord.Intents.default()
+#     intents.messages = True
 
-    # Create a Discord client
-    client = discord.Client(intents=intents)
+#     # Create a Discord client
+#     client = discord.Client(intents=intents)
 
-    # Event that triggers when the bot is ready
-    @client.event
-    async def on_ready():
-        print(f'We have logged in as {client.user}')
+#     # Event that triggers when the bot is ready
+#     @client.event
+#     async def on_ready():
+#         print(f'We have logged in as {client.user}')
 
-        # Fetch the channel where you want to send the message
-        channel = client.get_channel(CHANNEL_ID)
-        if channel is None:
-            print(f'Failed to find channel with ID {CHANNEL_ID}')
-            await client.close()
-            return
+#         # Fetch the channel where you want to send the message
+#         channel = client.get_channel(CHANNEL_ID)
+#         if channel is None:
+#             print(f'Failed to find channel with ID {CHANNEL_ID}')
+#             await client.close()
+#             return
 
-        # Construct your message with a bolded heading
-        if len(content) > MAX_MESSAGE_LENGTH:
-            # Split the message into chunks
-            chunks = [content[i:i+MAX_MESSAGE_LENGTH] for i in range(0, len(content), MAX_MESSAGE_LENGTH)]
-            for chunk in chunks:
-                await channel.send(chunk)
-        else:
-            await channel.send(content)
+#         # Construct your message with a bolded heading
+#         if len(content) > MAX_MESSAGE_LENGTH:
+#             # Split the message into chunks
+#             chunks = [content[i:i+MAX_MESSAGE_LENGTH] for i in range(0, len(content), MAX_MESSAGE_LENGTH)]
+#             for chunk in chunks:
+#                 await channel.send(chunk)
+#         else:
+#             await channel.send(content)
 
         
-        await client.close()
-    await client.start(TOKEN)
+#         await client.close()
+#     await client.start(TOKEN)
 
 IDU()
