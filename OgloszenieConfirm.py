@@ -1,9 +1,9 @@
 #!/bin/python3 
 
-# import discord
+import discord
 import asyncio
 import requests
-# import markdownify
+import markdownify
 import re
 
 import os
