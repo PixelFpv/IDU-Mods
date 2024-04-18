@@ -5,7 +5,7 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
    Create .env file:
       '''
       
-         SER_NAME = "YOUR IDU LOGIN NAME"
+         USER_NAME = "YOUR IDU LOGIN NAME"
          PASSWORD = "YOUR IDU LOGIN PASSWORD"
          TOKEN = "YOUR DISCORD BOT TOKEN"
          
@@ -17,9 +17,8 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
          
          MESSAGE_CHANEL_ID = CHANEL TO SEND MESSAGES
          
-         MARKS_CHANEL_ID = CHANEL TO SEND MARKS
-         
-      '''
+         MARKS_CHANEL_ID = CHANEL TO SEND MARKS   
+   '''
 
 ## As for now:
  - IduFreeRooms.py <-- is uset to generate website with available rooms
