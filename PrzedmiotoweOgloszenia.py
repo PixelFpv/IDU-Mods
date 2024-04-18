@@ -15,7 +15,7 @@ user = os.getenv('USER_NAME')
 passw = os.getenv('PASSWORD')   
     
 
-def IDU():
+def Przedmiotowe():
     url = 'https://s35.idu.edu.pl/users/sign_in'
 
     session = requests.Session()
@@ -143,4 +143,4 @@ async def send_message(content):
         await client.close()
     await client.start(TOKEN)
 
-IDU()
+Przedmiotowe()

@@ -14,7 +14,7 @@ user = os.getenv('USER_NAME')
 passw = os.getenv('PASSWORD')
 
 # Function to send messages
-def MessageSend():
+def Message():
     # URL for logging in
     url = 'https://s35.idu.edu.pl/users/sign_in'
 
@@ -135,4 +135,4 @@ async def send_message(content):
     await client.start(TOKEN)
 
 # Call the function to send messages
-MessageSend()
+Message()
