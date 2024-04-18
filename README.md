@@ -8,7 +8,7 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
          PASSWORD = "YOUR IDU LOGIN PASSWORD"
          TOKEN = "YOUR DISCORD BOT TOKEN"
          
-         #LEAVE BLANK IF YOU DONT WANT TO USE
+         LEAVE BLANK IF YOU DONT WANT TO USE
          
          AKTUALNOSCI_CHANEL_ID = CHANEL TO SEND AKTUALNOŚCI
          
@@ -17,7 +17,7 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
          MESSAGE_CHANEL_ID = CHANEL TO SEND MESSAGES
          
          MARKS_CHANEL_ID = CHANEL TO SEND MARKS
-         '''
+      '''
 
 ## As for now:
  - IduFreeRooms.py <-- is uset to generate website with available rooms
