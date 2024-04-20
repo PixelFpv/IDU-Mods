@@ -93,12 +93,18 @@ def Mark():
     # Iterate through each page to extract and send messages
 
     info_part = html_string.split('''<h3>Oceny<span class="toggle-switch"><a href="#" class="hide-me">zwiń</a></span></h3>''')
-    # text = str(info_part[1]).find('''<div class="profile-event mark unseen">''')
-    text = str(info_part[1]).find('''<div class="profile-event mark">''')
+    pattern = r'<div\s+class="see-more"><a\s+href="([^"]+)"'
+
+    # Search for the pattern in the string
+    match = re.search(pattern, info_part[1])
+    seemoreMarks = match.group(1)
+    # print(seemoreMarks)
+    text = str(info_part[1]).find('''<div class="profile-event mark unseen">''')
+    # text = str(info_part[1]).find('''<div class="profile-event mark">''')
 
     if text != -1:
-        # info_split = info_part[1].split('''<div class="profile-event mark unseen">''')
-        info_split = info_part[1].split('''<div class="profile-event mark">''')
+        info_split = info_part[1].split('''<div class="profile-event mark unseen">''')
+        # info_split = info_part[1].split('''<div class="profile-event mark">''')
         # print("Found unread mark")
 
     else:
@@ -155,7 +161,9 @@ def Mark():
         h = h.replace("]", "    ")
         print(h)
             # Send the message asynchronously
-        # asyncio.run(send_message(h))
+        asyncio.run(send_message(h))
+
+    session.get("https://s35.idu.edu.pl/" + seemoreMarks)
 
 # Retrieve Discord token and channel ID from environment variables
 TOKEN = os.getenv('TOKEN')
