@@ -9,7 +9,7 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
          PASSWORD = "YOUR IDU LOGIN PASSWORD"
          TOKEN = "YOUR DISCORD BOT TOKEN"
          
-         #LEAVE BLANK IF YOU DONT WANT TO USE
+         #FOR CHANEL ID LEAVE BLANK IF YOU DONT WANT TO USE
          
          AKTUALNOSCI_CHANEL_ID = CHANEL TO SEND AKTUALNOŚCI
          
