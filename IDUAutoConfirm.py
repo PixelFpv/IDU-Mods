@@ -1,6 +1,7 @@
 import discord  
 import requests
 import markdownify 
+import asyncio
 import re
 import os 
 from dotenv import load_dotenv

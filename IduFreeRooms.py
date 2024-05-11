@@ -1,6 +1,5 @@
 #!/bin/python3 
-
-# from parse import is_busy
+import asyncio
 import pandas as pd
 import time
 from datetime import datetime, timedelta
@@ -149,7 +148,7 @@ def get_empty_rooms():
                 free_3.append(count)
 
 
-    website = open(r'../IDUwww/index.html',"r+")
+    website = open(r'/home/krzysiek/IDUwww/index.html',"r+")
 
     website.truncate(0)
     website.write('''
