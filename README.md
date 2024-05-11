@@ -9,7 +9,7 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
          PASSWORD = "YOUR IDU LOGIN PASSWORD"
          TOKEN = "YOUR DISCORD BOT TOKEN"
          
-         #LEAVE BLANK IF YOU DONT WANT TO USE
+         #FOR CHANEL ID LEAVE BLANK IF YOU DONT WANT TO USE
          
          AKTUALNOSCI_CHANEL_ID = CHANEL TO SEND AKTUALNOŚCI
          
@@ -25,7 +25,5 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
  - IDUAutoConfirm.py <-- confirms anouncements (is called by IduFreeRooms when needed)
  - MessageConfirm.py <-- sends unread messages
  - OgloszenieConfirm.py <-- sends unread informations
-
-## To-do:
- - [ ] send mark and revievs
- - [ ] send subject announcements
+ - MarkConfirm.py <-- sends marks
+ - PrzedmiotoweOgloszenia.py <-- sends subject anouncements
