@@ -105,17 +105,17 @@ def Mark():
     if text != -1:
         info_split = info_part[1].split('''<div class="profile-event mark unseen">''')
         # info_split = info_part[1].split('''<div class="profile-event mark">''')
-        # print("Found unread mark")
+        print("Found unread mark")
 
     else:
         print("No new marks")
         exit(666)
         # Iterate through each message to extract and send
     # print(len(info_split))
-    for i in range(0, len(info_split), 1):
-        # print(i)
+    for i in range(1, len(info_split), 1):
+        print(i)
         h = scrape(info_split[i])
-        # print (h)
+        print (h)
         ha = h
         h = scrape_third(info_split[i])
         splith = h.split('''<a href="#description_for_grade_''')
