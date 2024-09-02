@@ -49,7 +49,7 @@ def Message():
 
     # Function to scrape information from HTML
     def scrape(html_in):
-        pattern = r'><img alt="(\w+)\s+(\w+)"\s+src="'
+        pattern = r'><img alt="(\w+)\s+([\w\-]+)"\s+src="'
         match = re.search(pattern, html_in)
         if match:
             name = match.group(1)
