@@ -2,7 +2,7 @@
 This is a list of mods for IDU - Internetowy Dziennik Ucznia
 
 ## Usage:
-   Create .env file:
+   Copy repo, in it's directory create .env file:
       
       
          USER_NAME = "YOUR IDU LOGIN NAME"
@@ -27,3 +27,5 @@ This is a list of mods for IDU - Internetowy Dziennik Ucznia
  - OgloszenieConfirm.py <-- sends unread informations
  - MarkConfirm.py <-- sends marks
  - PrzedmiotoweOgloszenia.py <-- sends subject anouncements
+
+You can use crontab to run scripts that you want to use
